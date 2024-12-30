@@ -10,13 +10,4 @@ public class ConsumerResponseDTO {
     private String age;
     private String email;
 
-    // Converte entidade para DTO
-    public static ConsumerResponseDTO fromEntity(Consumer consumer) {
-        ConsumerResponseDTO dto = new ConsumerResponseDTO();
-        dto.setId(consumer.getId());
-        dto.setName(consumer.getName());
-        dto.setAge(consumer.getAge());
-        dto.setEmail(consumer.getEmail());
-        return dto;
-    }
 }

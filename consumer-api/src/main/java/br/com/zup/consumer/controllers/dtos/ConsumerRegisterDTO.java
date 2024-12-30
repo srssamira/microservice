@@ -10,11 +10,4 @@ public class ConsumerRegisterDTO {
     private String age;
     private String email;
 
-    public Consumer toEntity() {
-        Consumer consumer = new Consumer();
-        consumer.setName(this.name);
-        consumer.setAge(this.age);
-        consumer.setEmail(this.email);
-        return consumer;
-    }
 }
