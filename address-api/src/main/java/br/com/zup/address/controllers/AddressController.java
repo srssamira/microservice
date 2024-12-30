@@ -5,6 +5,7 @@ import br.com.zup.address.controllers.dtos.AddressResponseDTO;
 import br.com.zup.address.models.Address;
 import br.com.zup.address.services.AddressService;
 import br.com.zup.address.services.mappers.AddressMapper;
+import jakarta.validation.Valid;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,7 +23,7 @@ public class AddressController {
     private AddressService addressService;
 
     @PostMapping
-    public ResponseEntity<AddressResponseDTO> createAddress(@RequestBody AddressRequestDTO requestDTO) {
+    public ResponseEntity<AddressResponseDTO> createAddress(@RequestBody @Valid AddressRequestDTO requestDTO) {
         log.info("Start address register flow");
         Address address = AddressMapper.toAddress(requestDTO);
 

@@ -3,7 +3,7 @@ package br.com.zup.gateway.infra.clients.address.dtos;
 import lombok.Data;
 
 @Data
-public class AddressRegisterDto {
+public class AddressRegisterDTO {
     private String street;
     private String city;
     private String zipCode;

@@ -1,6 +1,5 @@
 package br.com.zup.consumer.controllers.dtos;
 
-import br.com.zup.consumer.models.Consumer;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
