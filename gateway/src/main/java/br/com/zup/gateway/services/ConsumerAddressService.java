@@ -33,7 +33,7 @@ public class ConsumerAddressService {
 
     private AddressResponseDTO registerAddress(ConsumerAddressRegisterDTO consumerAddressRegisterDTO, String consumerId) {
         AddressRegisterDto addressRegisterDto = mapToAddressRegisterDTO(consumerAddressRegisterDTO, consumerId);
-        return addressClient.registeAddress(addressRegisterDto);
+        return addressClient.registerAdress(addressRegisterDto);
     }
 
     private ConsumerRegisterDTO mapToConsumerRegisterDTO(ConsumerAddressRegisterDTO consumerAddressRegisterDTO) {
