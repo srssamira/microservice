@@ -1,0 +1,3 @@
+2024-12-30 04:27:50.210053-03:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "ADDRESS" not found (this database is empty); SQL statement:
+insert into address (city,consumer_id,state,street,zip_code,id) values (?,?,?,?,?,?) [42104-232]
