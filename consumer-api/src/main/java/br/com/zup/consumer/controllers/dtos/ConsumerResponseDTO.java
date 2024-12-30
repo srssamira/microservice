@@ -7,7 +7,7 @@ import lombok.Data;
 public class ConsumerResponseDTO {
     private String id;
     private String name;
-    private String age;
+    private Integer age;
     private String email;
 
 }
