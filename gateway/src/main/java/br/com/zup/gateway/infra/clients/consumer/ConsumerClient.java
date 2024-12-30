@@ -7,6 +7,8 @@ import org.springframework.http.MediaType;
 import org.springframework.stereotype.Component;
 import org.springframework.web.reactive.function.client.WebClient;
 
+import java.util.List;
+
 @Component
 public class ConsumerClient {
 
@@ -30,9 +32,19 @@ public class ConsumerClient {
     public ConsumerResponseDTO getConsumer(String consumerId){
         return webClient
                 .get()
-                .uri(URL_BASE+"/"+consumerId)
+                .uri(URL_BASE+ "/" + consumerId)
                 .retrieve()
                 .bodyToMono(ConsumerResponseDTO.class)
+                .block();
+    }
+
+    public List<ConsumerResponseDTO> getAllConsumers(){
+        return webClient
+                .get()
+                .uri(URL_BASE)
+                .retrieve()
+                .bodyToFlux(ConsumerResponseDTO.class)
+                .collectList()
                 .block();
     }
 }

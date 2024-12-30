@@ -3,6 +3,7 @@ package br.com.zup.gateway.controllers;
 import br.com.zup.gateway.controllers.dtos.ConsumerAddressRegisterDTO;
 import br.com.zup.gateway.controllers.dtos.ConsumerAddressResponseDTO;
 import br.com.zup.gateway.infra.clients.address.dtos.AddressResponseDTO;
+import br.com.zup.gateway.infra.clients.consumer.dtos.ConsumerResponseDTO;
 import br.com.zup.gateway.services.ConsumerAddressService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -29,5 +30,15 @@ public class ConsumerAddressController {
     @GetMapping("/address")
     public List<AddressResponseDTO> findAllAddresses(){
         return consumerAddressService.getAllAddresses();
+    }
+
+    @GetMapping("/consumer")
+    public List<ConsumerResponseDTO> findAllConsumerAddresses(){
+        return consumerAddressService.getAllConsumers();
+    }
+
+    @GetMapping("/consumer/{consumerId}")
+    public ConsumerResponseDTO findByConsumerId(@PathVariable("consumerId") String consumerId){
+        return consumerAddressService.getConsumerById(consumerId);
     }
 }

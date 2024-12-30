@@ -47,5 +47,13 @@ public class ConsumerAddressService {
         return addressClient.getAllAddresses();
     }
 
+    public ConsumerResponseDTO getConsumerById(String consumerId) {
+        return consumerClient.getConsumer(consumerId);
+    }
+
+    public List<ConsumerResponseDTO> getAllConsumers() {
+        return consumerClient.getAllConsumers();
+    }
+
 
 }
