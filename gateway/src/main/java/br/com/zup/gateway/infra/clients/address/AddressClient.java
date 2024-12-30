@@ -7,6 +7,8 @@ import org.springframework.http.MediaType;
 import org.springframework.stereotype.Component;
 import org.springframework.web.reactive.function.client.WebClient;
 
+import java.util.List;
+
 @Component
 public class AddressClient {
 
@@ -16,7 +18,8 @@ public class AddressClient {
 
 
     public AddressResponseDTO registerAddress(AddressRegisterDTO addressRegisterDTO){
-        return webClient.post()
+        return webClient
+                .post()
                 .uri(URL_BASE)
                 .contentType(MediaType.APPLICATION_JSON)
                 .bodyValue(addressRegisterDTO)
@@ -25,7 +28,25 @@ public class AddressClient {
                 .block();
     }
 
+    public AddressResponseDTO getAddressById(String addressId){
+        return webClient
+                .get()
+                .uri(URL_BASE + "/" + addressId)
+                .retrieve()
+                .bodyToMono(AddressResponseDTO.class)
+                .block();
+    }
 
+    public List<AddressResponseDTO> getAllAddresses(){
+        return webClient
+                .get()
+                .uri(URL_BASE)
+                .retrieve()
+                .bodyToFlux(AddressResponseDTO.class)
+                .collectList()
+                .block();
+
+    }
 
 
 }

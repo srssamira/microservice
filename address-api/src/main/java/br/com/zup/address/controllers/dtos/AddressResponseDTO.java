@@ -1,8 +1,10 @@
 package br.com.zup.address.controllers.dtos;
 
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Data
+@NoArgsConstructor
 public class AddressResponseDTO {
 
     private String id;

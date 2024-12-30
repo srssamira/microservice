@@ -10,7 +10,11 @@ public class ConsumerAddressMapper {
     private static final ObjectMapper mapper = new ObjectMapper();
 
     public static ConsumerRegisterDTO toConsumerRegisterDTO(ConsumerAddressRegisterDTO consumerAddressRegisterDTO) {
-        return mapper.convertValue(consumerAddressRegisterDTO, ConsumerRegisterDTO.class);
+        ConsumerRegisterDTO consumerRegisterDTO = new ConsumerRegisterDTO();
+        consumerRegisterDTO.setAge(consumerAddressRegisterDTO.getAge());
+        consumerRegisterDTO.setName(consumerAddressRegisterDTO.getName());
+        consumerRegisterDTO.setEmail(consumerAddressRegisterDTO.getEmail());
+        return consumerRegisterDTO;
     }
 
     public static AddressRegisterDTO toAddressRegisterDTO(ConsumerAddressRegisterDTO consumerAddressRegisterDTO, String consumerId) {

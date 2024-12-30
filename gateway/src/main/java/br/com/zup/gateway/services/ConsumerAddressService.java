@@ -12,6 +12,8 @@ import br.com.zup.gateway.services.mappers.ConsumerAddressMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class ConsumerAddressService {
 
@@ -35,6 +37,14 @@ public class ConsumerAddressService {
     private AddressResponseDTO registerAddress(ConsumerAddressRegisterDTO consumerAddressRegisterDTO, String consumerId) {
         AddressRegisterDTO addressRegisterDTO = ConsumerAddressMapper.toAddressRegisterDTO(consumerAddressRegisterDTO, consumerId);
         return addressClient.registerAddress(addressRegisterDTO);
+    }
+
+    public AddressResponseDTO getAddressById(String addressId) {
+        return addressClient.getAddressById(addressId);
+    }
+
+    public List<AddressResponseDTO> getAllAddresses() {
+        return addressClient.getAllAddresses();
     }
 
 

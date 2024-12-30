@@ -35,7 +35,7 @@ public class AddressController {
     }
 
     @GetMapping
-    public ResponseEntity<List<AddressResponseDTO>> getAllAddresses() {
+    public ResponseEntity<?> getAllAddresses() {
         List<Address> addresses = addressService.getAllAddresses();
 
         return ResponseEntity.ok(AddressMapper.toAddressResponseDTOList(addresses));

@@ -11,6 +11,9 @@ public class AddressDTO {
     private String state;
     private String consumerId;
 
+    public AddressDTO() {
+    }
+
     public AddressDTO(AddressResponseDTO addressResponseDTO) {
         this.city = addressResponseDTO.getCity();
         this.consumerId = addressResponseDTO.getConsumerId();

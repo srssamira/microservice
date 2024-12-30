@@ -21,6 +21,10 @@ public class AddressMapper {
     }
 
     public static List<AddressResponseDTO> toAddressResponseDTOList(List<Address> addresses) {
+
+        if (addresses == null || addresses.isEmpty())
+            return new ArrayList<>();
+
         List<AddressResponseDTO> addressResponseDTOs = new ArrayList<>();
         for (Address address : addresses) {
             addressResponseDTOs.add(toAddressResponseDTO(address));

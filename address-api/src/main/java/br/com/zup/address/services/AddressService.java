@@ -21,7 +21,7 @@ public class AddressService {
 
     // Read (Get All)
     public List<Address> getAllAddresses() {
-        return addressRepository.findAll();
+            return addressRepository.findAll();
     }
 
     // Read (Get by ID)
