@@ -67,4 +67,8 @@ public class ConsumerAddressService {
         addressClient.deleteAddress(addressId);
     }
 
+    public void deleteConsumerById(String consumerId) {
+        consumerClient.deleteConsumer(consumerId);
+    }
+
 }

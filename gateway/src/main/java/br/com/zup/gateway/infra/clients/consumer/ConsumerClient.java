@@ -58,4 +58,13 @@ public class ConsumerClient {
                 .bodyToMono(ConsumerResponseDTO.class)
                 .block();
     }
+
+    public void deleteConsumer(String consumerId){
+        webClient
+                .delete()
+                .uri(URL_BASE + "/" + consumerId)
+                .retrieve()
+                .bodyToMono(Void.class)
+                .block();
+    }
 }
