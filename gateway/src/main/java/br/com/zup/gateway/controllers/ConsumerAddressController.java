@@ -41,6 +41,12 @@ public class ConsumerAddressController {
         return ResponseEntity.ok(consumerAddressService.getAllAddresses());
     }
 
+    @GetMapping("/{consumerId}")
+    public ResponseEntity<ConsumerAddressResponseDTO> findAddressAndConsumerByConsumerId(@PathVariable String consumerId){
+        LOG.info("Find consumer address by consumer ID");
+        return ResponseEntity.ok(consumerAddressService.getConsumerAddressById(consumerId));
+    }
+
     @GetMapping("/consumer")
     public ResponseEntity<List<ConsumerResponseDTO>> findAllConsumerAddresses(){
         LOG.info("Find all consumer addresses");

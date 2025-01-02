@@ -29,6 +29,10 @@ public class AddressService {
         return addressRepository.findById(id);
     }
 
+    public Optional<Address> getByConsumerId(String consumerId) {
+        return addressRepository.findAddressByConsumerId(consumerId);
+    }
+
     // Update
     public Address updateAddress(String id, Address updatedAddress) {
         return addressRepository.findById(id).map(address -> {

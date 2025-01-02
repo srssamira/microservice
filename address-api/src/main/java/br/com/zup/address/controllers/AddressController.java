@@ -42,6 +42,14 @@ public class AddressController {
     }
 
     @GetMapping("/{id}")
+    public ResponseEntity<?> getAddressByConsumerId(@PathVariable String id){
+        Address address = addressService.getByConsumerId(id).orElseThrow(()
+        -> new RuntimeException("Address not found"));
+
+        return ResponseEntity.ok(AddressMapper.toAddressResponseDTO(address));
+    }
+
+    @GetMapping("/{id}")
     public ResponseEntity<AddressResponseDTO> getAddressById(@PathVariable String id) {
         Address address = addressService.getAddressById(id)
                 .orElseThrow(() -> new RuntimeException("Address not found with id " + id));

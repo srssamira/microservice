@@ -68,5 +68,14 @@ public class AddressClient {
                 .block();
     }
 
+    public AddressResponseDTO getAddresByConsumerId(String consumerId){
+        return webClient
+                .get()
+                .uri(URL_BASE + "/" + consumerId)
+                .retrieve()
+                .bodyToMono(AddressResponseDTO.class)
+                .block();
+    }
+
 
 }

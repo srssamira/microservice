@@ -43,6 +43,16 @@ public class ConsumerAddressService {
         return addressClient.getAddressById(addressId);
     }
 
+    public AddressResponseDTO getAddressByConsumerId(String consumerId) {
+        return addressClient.getAddresByConsumerId(consumerId);
+    }
+
+    public ConsumerAddressResponseDTO getConsumerAddressById(String consumerId) {
+        ConsumerResponseDTO consumerResponseDTO = consumerClient.getConsumer(consumerId);
+        AddressResponseDTO addressResponseDTO = addressClient.getAddressById(consumerId);
+        return new ConsumerAddressResponseDTO(consumerResponseDTO, addressResponseDTO);
+    }
+
     public List<AddressResponseDTO> getAllAddresses() {
         return addressClient.getAllAddresses();
     }
