@@ -53,4 +53,9 @@ public class ConsumerAddressController {
     public ConsumerResponseDTO updateConsumer(@PathVariable("consumerId") String consumerId, @RequestBody ConsumerRegisterDTO registerDTO){
         return consumerAddressService.updateConsumer(consumerId, registerDTO);
     }
+
+    @DeleteMapping("{/addressId}")
+    public void deleteConsumer(@PathVariable("consumerId") String addressId){
+        consumerAddressService.deleteAddressById(addressId);
+    }
 }

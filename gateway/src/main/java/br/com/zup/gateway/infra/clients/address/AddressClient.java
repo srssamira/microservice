@@ -59,5 +59,14 @@ public class AddressClient {
                 .block();
     }
 
+    public void deleteAddress(String addressId){
+        webClient
+                .delete()
+                .uri(URL_BASE + "/" + addressId)
+                .retrieve()
+                .bodyToMono(Void.class)
+                .block();
+    }
+
 
 }

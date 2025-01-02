@@ -63,5 +63,8 @@ public class ConsumerAddressService {
         return consumerClient.updateConsumer(consumerId, consumerRegisterDTO);
     }
 
+    public void deleteAddressById(String addressId) {
+        addressClient.deleteAddress(addressId);
+    }
 
 }
