@@ -47,4 +47,15 @@ public class ConsumerClient {
                 .collectList()
                 .block();
     }
+
+    public ConsumerResponseDTO updateConsumer(String consumerId, ConsumerRegisterDTO registerDTO){
+        return webClient
+                .put()
+                .uri(URL_BASE + "/" + consumerId)
+                .contentType(MediaType.APPLICATION_JSON)
+                .bodyValue(registerDTO)
+                .retrieve()
+                .bodyToMono(ConsumerResponseDTO.class)
+                .block();
+    }
 }

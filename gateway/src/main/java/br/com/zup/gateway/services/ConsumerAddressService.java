@@ -59,5 +59,9 @@ public class ConsumerAddressService {
         return addressClient.updateAddress(addresId, addressRegisterDTO);
     }
 
+    public ConsumerResponseDTO updateConsumer(String consumerId, ConsumerRegisterDTO consumerRegisterDTO) {
+        return consumerClient.updateConsumer(consumerId, consumerRegisterDTO);
+    }
+
 
 }
