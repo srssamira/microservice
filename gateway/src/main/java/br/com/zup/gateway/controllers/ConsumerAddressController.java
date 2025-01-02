@@ -2,6 +2,7 @@ package br.com.zup.gateway.controllers;
 
 import br.com.zup.gateway.controllers.dtos.ConsumerAddressRegisterDTO;
 import br.com.zup.gateway.controllers.dtos.ConsumerAddressResponseDTO;
+import br.com.zup.gateway.infra.clients.address.dtos.AddressRegisterDTO;
 import br.com.zup.gateway.infra.clients.address.dtos.AddressResponseDTO;
 import br.com.zup.gateway.infra.clients.consumer.dtos.ConsumerResponseDTO;
 import br.com.zup.gateway.services.ConsumerAddressService;
@@ -40,5 +41,10 @@ public class ConsumerAddressController {
     @GetMapping("/consumer/{consumerId}")
     public ConsumerResponseDTO findByConsumerId(@PathVariable("consumerId") String consumerId){
         return consumerAddressService.getConsumerById(consumerId);
+    }
+
+    @PutMapping("/{addressId}")
+    public AddressResponseDTO updateAddress(@PathVariable("addressId") String addressId, @RequestBody AddressRegisterDTO addressRegisterDTO){
+        return consumerAddressService.updateAddressById(addressId, addressRegisterDTO);
     }
 }

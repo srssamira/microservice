@@ -48,5 +48,16 @@ public class AddressClient {
 
     }
 
+    public AddressResponseDTO updateAddress(String addressId, AddressRegisterDTO addressRegisterDTO){
+        return webClient
+                .put()
+                .uri(URL_BASE + "/" + addressId)
+                .contentType(MediaType.APPLICATION_JSON)
+                .bodyValue(addressRegisterDTO)
+                .retrieve()
+                .bodyToMono(AddressResponseDTO.class)
+                .block();
+    }
+
 
 }
