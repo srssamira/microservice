@@ -40,7 +40,7 @@ public class ConsumerController {
     }
 
 
-    @PutMapping("/consumer/{consumerId}")
+    @PutMapping("/{consumerId}")
     public ResponseEntity<ConsumerResponseDTO> updateConsumer(@PathVariable("consumerId") String consumerId, @RequestBody ConsumerRegisterDTO registerDTO) {
         LOG.info("Updating consumer: " + consumerId);
         ConsumerResponseDTO consumerResponseDTO = consumerAddressService.updateConsumer(consumerId, registerDTO);
@@ -49,7 +49,7 @@ public class ConsumerController {
         return ResponseEntity.status(201).body(consumerResponseDTO);
     }
 
-    @DeleteMapping("consumer/{consumerId}")
+    @DeleteMapping("/{consumerId}")
     public ResponseEntity<?> deleteConsumer(@PathVariable("consumerId") String consumerId) {
         LOG.info("Delete consumer by ID");
         consumerAddressService.deleteConsumerById(consumerId);
