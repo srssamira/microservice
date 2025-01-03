@@ -1,7 +1,9 @@
 package br.com.zup.address.services;
 
+import br.com.zup.address.controllers.dtos.AddressResponseDTO;
 import br.com.zup.address.models.Address;
 import br.com.zup.address.repositories.AddressRepository;
+import br.com.zup.address.services.mappers.AddressMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -29,8 +31,13 @@ public class AddressService {
         return addressRepository.findById(id);
     }
 
-    public Optional<Address> getByConsumerId(String consumerId) {
-        return addressRepository.findAddressByConsumerId(consumerId);
+    public Optional<AddressResponseDTO> getByConsumerId(String consumerId) {
+        Optional<Address> address = addressRepository.findAddressByConsumerId(consumerId);
+
+        if (address.isEmpty())
+            throw new RuntimeException("ConsumerId not found");
+
+        return Optional.of(AddressMapper.toAddressResponseDTO(address.get()));
     }
 
     // Update

@@ -71,7 +71,7 @@ public class AddressClient {
     public AddressResponseDTO getAddresByConsumerId(String consumerId){
         return webClient
                 .get()
-                .uri(URL_BASE + "/" + consumerId)
+                .uri(URL_BASE + "/consumer/" + consumerId)
                 .retrieve()
                 .bodyToMono(AddressResponseDTO.class)
                 .block();

@@ -43,13 +43,9 @@ public class ConsumerAddressService {
         return addressClient.getAddressById(addressId);
     }
 
-    public AddressResponseDTO getAddressByConsumerId(String consumerId) {
-        return addressClient.getAddresByConsumerId(consumerId);
-    }
-
     public ConsumerAddressResponseDTO getConsumerAddressById(String consumerId) {
         ConsumerResponseDTO consumerResponseDTO = consumerClient.getConsumer(consumerId);
-        AddressResponseDTO addressResponseDTO = addressClient.getAddressById(consumerId);
+        AddressResponseDTO addressResponseDTO = addressClient.getAddresByConsumerId(consumerId);
         return new ConsumerAddressResponseDTO(consumerResponseDTO, addressResponseDTO);
     }
 
@@ -65,8 +61,8 @@ public class ConsumerAddressService {
         return consumerClient.getAllConsumers();
     }
 
-    public AddressResponseDTO updateAddressById(String addresId, AddressRegisterDTO addressRegisterDTO) {
-        return addressClient.updateAddress(addresId, addressRegisterDTO);
+    public AddressResponseDTO updateAddressById(String addressId, AddressRegisterDTO addressRegisterDTO) {
+        return addressClient.updateAddress(addressId, addressRegisterDTO);
     }
 
     public ConsumerResponseDTO updateConsumer(String consumerId, ConsumerRegisterDTO consumerRegisterDTO) {
