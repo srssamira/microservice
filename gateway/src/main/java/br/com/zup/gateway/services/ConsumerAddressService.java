@@ -45,7 +45,7 @@ public class ConsumerAddressService {
 
     public ConsumerAddressResponseDTO getConsumerAddressById(String consumerId) {
         ConsumerResponseDTO consumerResponseDTO = consumerClient.getConsumer(consumerId);
-        AddressResponseDTO addressResponseDTO = addressClient.getAddresByConsumerId(consumerId);
+        AddressResponseDTO addressResponseDTO = addressClient.getAddressByConsumerId(consumerId);
         return new ConsumerAddressResponseDTO(consumerResponseDTO, addressResponseDTO);
     }
 

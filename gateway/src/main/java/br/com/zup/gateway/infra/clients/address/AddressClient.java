@@ -68,7 +68,7 @@ public class AddressClient {
                 .block();
     }
 
-    public AddressResponseDTO getAddresByConsumerId(String consumerId){
+    public AddressResponseDTO getAddressByConsumerId(String consumerId){
         return webClient
                 .get()
                 .uri(URL_BASE + "/consumer/" + consumerId)
