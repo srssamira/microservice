@@ -9,13 +9,17 @@ import br.com.zup.gateway.infra.clients.consumer.ConsumerClient;
 import br.com.zup.gateway.infra.clients.consumer.dtos.ConsumerRegisterDTO;
 import br.com.zup.gateway.infra.clients.consumer.dtos.ConsumerResponseDTO;
 import br.com.zup.gateway.services.mappers.ConsumerAddressMapper;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.logging.Logger;
 
 @Service
 public class ConsumerAddressServiceImpl implements ConsumerAddressService {
+
+    private static final Logger LOG = (Logger) LoggerFactory.getLogger(ConsumerAddressServiceImpl.class);
 
     @Autowired
     private ConsumerClient consumerClient;
@@ -24,57 +28,130 @@ public class ConsumerAddressServiceImpl implements ConsumerAddressService {
     private AddressClient addressClient;
 
     public ConsumerAddressResponseDTO registerConsumerAddress(ConsumerAddressRegisterDTO consumerAddressRegisterDTO) {
+        LOG.info("Registering consumer address");
+
         ConsumerResponseDTO consumerResponseDTO = registerConsumer(consumerAddressRegisterDTO);
         AddressResponseDTO addressResponseDTO = registerAddress(consumerAddressRegisterDTO, consumerResponseDTO.getId());
-        return new ConsumerAddressResponseDTO(consumerResponseDTO, addressResponseDTO);
+
+        ConsumerAddressResponseDTO consumerAddressResponseDTO = new ConsumerAddressResponseDTO(consumerResponseDTO, addressResponseDTO);
+
+        LOG.info("Registered consumer address");
+
+        return consumerAddressResponseDTO;
     }
 
     private ConsumerResponseDTO registerConsumer(ConsumerAddressRegisterDTO consumerAddressRegisterDTO) {
+        LOG.info("Registering consumer");
+
         ConsumerRegisterDTO consumerRegisterDTO = ConsumerAddressMapper.toConsumerRegisterDTO(consumerAddressRegisterDTO);
-        return consumerClient.registerConsumerClient(consumerRegisterDTO);
+
+        ConsumerResponseDTO consumerResponseDTO = consumerClient.registerConsumerClient(consumerRegisterDTO);
+
+        LOG.info("Registered consumer");
+
+        return consumerResponseDTO;
     }
 
     private AddressResponseDTO registerAddress(ConsumerAddressRegisterDTO consumerAddressRegisterDTO, String consumerId) {
+        LOG.info("Registering address");
+
         AddressRegisterDTO addressRegisterDTO = ConsumerAddressMapper.toAddressRegisterDTO(consumerAddressRegisterDTO, consumerId);
-        return addressClient.registerAddress(addressRegisterDTO);
+
+        AddressResponseDTO addressResponseDTO = addressClient.registerAddress(addressRegisterDTO);
+
+        LOG.info("Registered address");
+
+        return addressResponseDTO;
     }
 
     public AddressResponseDTO getAddressById(String addressId) {
-        return addressClient.getAddressById(addressId);
+        LOG.info("Getting address by id");
+
+        AddressResponseDTO addressResponseDTO = addressClient.getAddressById(addressId);
+
+        LOG.info("Finished retrieving address by id");
+
+        return addressResponseDTO;
     }
 
     public ConsumerAddressResponseDTO getConsumerAddressById(String consumerId) {
+        LOG.info("Getting consumer address by id");
+
         ConsumerResponseDTO consumerResponseDTO = consumerClient.getConsumer(consumerId);
         AddressResponseDTO addressResponseDTO = addressClient.getAddressByConsumerId(consumerId);
-        return new ConsumerAddressResponseDTO(consumerResponseDTO, addressResponseDTO);
+
+        ConsumerAddressResponseDTO consumerAddressResponseDTO = new ConsumerAddressResponseDTO(consumerResponseDTO, addressResponseDTO);
+
+        LOG.info("Finished retrieving consumer address by id");
+
+        return consumerAddressResponseDTO;
     }
 
     public List<AddressResponseDTO> getAllAddresses() {
-        return addressClient.getAllAddresses();
+        LOG.info("Getting all addresses");
+
+        List<AddressResponseDTO> addressResponseDTOList = addressClient.getAllAddresses();
+
+        LOG.info("Finished retrieving all addresses");
+
+        return addressResponseDTOList;
     }
 
     public ConsumerResponseDTO getConsumerById(String consumerId) {
-        return consumerClient.getConsumer(consumerId);
+        LOG.info("Getting consumer by id");
+
+        ConsumerResponseDTO consumerResponseDTO = consumerClient.getConsumer(consumerId);
+
+        LOG.info("Finished retrieving consumer by id");
+
+        return consumerResponseDTO;
     }
 
     public List<ConsumerResponseDTO> getAllConsumers() {
-        return consumerClient.getAllConsumers();
+        LOG.info("Getting all consumers");
+
+        List<ConsumerResponseDTO> consumerResponseDTOList = consumerClient.getAllConsumers();
+
+        LOG.info("Finished retrieving all consumers");
+
+        return consumerResponseDTOList;
     }
 
     public AddressResponseDTO updateAddressById(String addressId, AddressRegisterDTO addressRegisterDTO) {
-        return addressClient.updateAddress(addressId, addressRegisterDTO);
+        LOG.info("Updating address by id");
+
+        AddressResponseDTO addressResponseDTO = addressClient.updateAddress(addressId, addressRegisterDTO);
+
+        LOG.info("Finished updating address by id");
+
+        return addressResponseDTO;
     }
 
     public ConsumerResponseDTO updateConsumer(String consumerId, ConsumerRegisterDTO consumerRegisterDTO) {
-        return consumerClient.updateConsumer(consumerId, consumerRegisterDTO);
+
+        LOG.info("Updating consumer by id");
+
+        ConsumerResponseDTO consumerResponseDTO = consumerClient.updateConsumer(consumerId, consumerRegisterDTO);
+
+        LOG.info("Finished updating consumer by id");
+
+        return consumerResponseDTO;
     }
 
     public void deleteAddressById(String addressId) {
+        LOG.info("Deleting address by id");
+
         addressClient.deleteAddress(addressId);
+
+        LOG.info("Finished deleting address by id");
     }
 
     public void deleteConsumerById(String consumerId) {
+        LOG.info("Deleting consumer by id");
+
         consumerClient.deleteConsumer(consumerId);
+
+        LOG.info("Finished deleting consumer by id");
     }
 
 }
