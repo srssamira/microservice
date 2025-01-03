@@ -4,9 +4,11 @@ import br.com.zup.gateway.controllers.dtos.AddressDTO;
 import br.com.zup.gateway.infra.clients.address.dtos.AddressRegisterDTO;
 import br.com.zup.gateway.infra.clients.address.dtos.AddressResponseDTO;
 import br.com.zup.gateway.services.ConsumerAddressService;
+import br.com.zup.gateway.services.ConsumerAddressServiceImpl;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.http.MediaType;
@@ -63,6 +65,7 @@ public class GatewayAddressControllerTest {
     @Test
     public void test_if_return_status_200_and_addres_by_id() throws Exception {
         String id = UUID.randomUUID().toString();
+
         when(consumerAddressService.getAddressById(id)).thenReturn(addressResponseDTO);
 
         mockMvc.perform(MockMvcRequestBuilders.get("/address/" + id))
@@ -80,6 +83,7 @@ public class GatewayAddressControllerTest {
         List<AddressResponseDTO> addressResponseDTOList = new ArrayList<>();
 
         addressResponseDTOList.add(addressResponseDTO);
+
         when(consumerAddressService.getAllAddresses()).thenReturn(addressResponseDTOList);
 
         mockMvc.perform(MockMvcRequestBuilders.get("/address"))
@@ -96,6 +100,7 @@ public class GatewayAddressControllerTest {
     @Test
     public void test_if_return_status_201_and_update_address() throws Exception {
         String id = UUID.randomUUID().toString();
+
         when(consumerAddressService.updateAddressById(id, addressRegisterDTO)).thenReturn(addressResponseDTO);
 
         mockMvc.perform(MockMvcRequestBuilders.put("/address/" + id)
@@ -113,7 +118,10 @@ public class GatewayAddressControllerTest {
     @Test
     public void test_if_return_status_204_and_delete_address() throws Exception {
         String id = UUID.randomUUID().toString();
-        mockMvc.perform(MockMvcRequestBuilders.delete("/address/" + id))
+
+        Mockito.doNothing().when(consumerAddressService).deleteAddressById(id);
+
+        mockMvc.perform(MockMvcRequestBuilders.delete("/address/"+id))
                 .andExpect(MockMvcResultMatchers.status().isNoContent());
     }
 }

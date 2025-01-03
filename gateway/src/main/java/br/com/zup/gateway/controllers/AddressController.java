@@ -3,6 +3,7 @@ package br.com.zup.gateway.controllers;
 import br.com.zup.gateway.infra.clients.address.dtos.AddressRegisterDTO;
 import br.com.zup.gateway.infra.clients.address.dtos.AddressResponseDTO;
 import br.com.zup.gateway.services.ConsumerAddressService;
+import br.com.zup.gateway.services.ConsumerAddressServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
