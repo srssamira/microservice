@@ -17,23 +17,19 @@ public class ConsumerService {
     @Autowired
     private ConsumerRepository consumerRepository;
 
-    // Create
     public Consumer createConsumer(Consumer consumer) {
         log.info("Start create consumer flow");
         return consumerRepository.save(consumer);
     }
 
-    // Read (Get all consumers)
     public List<Consumer> getAllConsumers() {
         return consumerRepository.findAll();
     }
 
-    // Read (Get consumer by ID)
     public Optional<Consumer> getConsumerById(String id) {
         return consumerRepository.findById(id);
     }
 
-    // Update
     public Consumer updateConsumer(String id, Consumer updatedConsumer) {
         return consumerRepository.findById(id).map(consumer -> {
             consumer.setName(updatedConsumer.getName());
@@ -43,7 +39,6 @@ public class ConsumerService {
         }).orElseThrow(() -> new RuntimeException("Consumer not found with id: " + id));
     }
 
-    // Delete
     public void deleteConsumer(String id) {
         if (consumerRepository.existsById(id)) {
             consumerRepository.deleteById(id);

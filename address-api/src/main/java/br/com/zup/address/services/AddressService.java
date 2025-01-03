@@ -16,17 +16,14 @@ public class AddressService {
     @Autowired
     private AddressRepository addressRepository;
 
-    // Create
     public Address createAddress(Address address) {
         return addressRepository.save(address);
     }
 
-    // Read (Get All)
     public List<Address> getAllAddresses() {
             return addressRepository.findAll();
     }
 
-    // Read (Get by ID)
     public Optional<Address> getAddressById(String id) {
         return addressRepository.findById(id);
     }
@@ -40,7 +37,6 @@ public class AddressService {
         return Optional.of(AddressMapper.toAddressResponseDTO(address.get()));
     }
 
-    // Update
     public Address updateAddress(String id, Address updatedAddress) {
         return addressRepository.findById(id).map(address -> {
             address.setStreet(updatedAddress.getStreet());
@@ -51,7 +47,6 @@ public class AddressService {
         }).orElseThrow(() -> new RuntimeException("Address not found with id " + id));
     }
 
-    // Delete
     public void deleteAddress(String id) {
         if (addressRepository.existsById(id)) {
             addressRepository.deleteById(id);

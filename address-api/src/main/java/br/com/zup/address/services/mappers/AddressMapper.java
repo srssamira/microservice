@@ -1,6 +1,6 @@
 package br.com.zup.address.services.mappers;
 
-import br.com.zup.address.controllers.dtos.AddressRequestDTO;
+import br.com.zup.address.controllers.dtos.AddressRegisterDTO;
 import br.com.zup.address.controllers.dtos.AddressResponseDTO;
 import br.com.zup.address.models.Address;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -12,8 +12,8 @@ public class AddressMapper {
 
     private static final ObjectMapper mapper = new ObjectMapper();
 
-    public static Address toAddress(AddressRequestDTO addressRequestDTO) {
-        return mapper.convertValue(addressRequestDTO, Address.class);
+    public static Address toAddress(AddressRegisterDTO addressRegisterDTO) {
+        return mapper.convertValue(addressRegisterDTO, Address.class);
     }
 
     public static AddressResponseDTO toAddressResponseDTO(Address address) {

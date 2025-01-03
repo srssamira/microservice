@@ -1,6 +1,6 @@
 package br.com.zup.address.controllers;
 
-import br.com.zup.address.controllers.dtos.AddressRequestDTO;
+import br.com.zup.address.controllers.dtos.AddressRegisterDTO;
 import br.com.zup.address.controllers.dtos.AddressResponseDTO;
 import br.com.zup.address.models.Address;
 import br.com.zup.address.services.AddressService;
@@ -25,7 +25,7 @@ public class AddressController {
     private AddressService addressService;
 
     @PostMapping
-    public ResponseEntity<AddressResponseDTO> createAddress(@RequestBody @Valid AddressRequestDTO requestDTO) {
+    public ResponseEntity<AddressResponseDTO> createAddress(@RequestBody @Valid AddressRegisterDTO requestDTO) {
         log.info("Start address register flow");
         Address address = AddressMapper.toAddress(requestDTO);
 
@@ -61,7 +61,7 @@ public class AddressController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<AddressResponseDTO> updateAddress(@PathVariable String id, @RequestBody AddressRequestDTO requestDTO) {
+    public ResponseEntity<AddressResponseDTO> updateAddress(@PathVariable String id, @RequestBody AddressRegisterDTO requestDTO) {
         Address updatedAddress = AddressMapper.toAddress(requestDTO);
 
         Address address = addressService.updateAddress(id, updatedAddress);

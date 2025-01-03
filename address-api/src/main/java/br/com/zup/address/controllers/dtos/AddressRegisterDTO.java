@@ -7,7 +7,7 @@ import lombok.NoArgsConstructor;
 
 @Data
 @NoArgsConstructor
-public class AddressRequestDTO {
+public class AddressRegisterDTO {
 
     @NotNull(message = "Street can't be null")
     @NotBlank(message = "Street can't be blank")

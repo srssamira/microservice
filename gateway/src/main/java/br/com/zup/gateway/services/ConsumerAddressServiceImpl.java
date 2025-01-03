@@ -9,23 +9,24 @@ import br.com.zup.gateway.infra.clients.consumer.ConsumerClient;
 import br.com.zup.gateway.infra.clients.consumer.dtos.ConsumerRegisterDTO;
 import br.com.zup.gateway.infra.clients.consumer.dtos.ConsumerResponseDTO;
 import br.com.zup.gateway.services.mappers.ConsumerAddressMapper;
+import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.logging.Logger;
 
 @Service
 public class ConsumerAddressServiceImpl implements ConsumerAddressService {
 
-    private static final Logger LOG = (Logger) LoggerFactory.getLogger(ConsumerAddressServiceImpl.class);
+    private static final Logger LOG = LoggerFactory.getLogger(ConsumerAddressServiceImpl.class);
 
     @Autowired
     private ConsumerClient consumerClient;
 
     @Autowired
     private AddressClient addressClient;
+
 
     public ConsumerAddressResponseDTO registerConsumerAddress(ConsumerAddressRegisterDTO consumerAddressRegisterDTO) {
         LOG.info("Registering consumer address");
@@ -40,6 +41,7 @@ public class ConsumerAddressServiceImpl implements ConsumerAddressService {
         return consumerAddressResponseDTO;
     }
 
+
     private ConsumerResponseDTO registerConsumer(ConsumerAddressRegisterDTO consumerAddressRegisterDTO) {
         LOG.info("Registering consumer");
 
@@ -51,6 +53,7 @@ public class ConsumerAddressServiceImpl implements ConsumerAddressService {
 
         return consumerResponseDTO;
     }
+
 
     private AddressResponseDTO registerAddress(ConsumerAddressRegisterDTO consumerAddressRegisterDTO, String consumerId) {
         LOG.info("Registering address");
@@ -64,6 +67,7 @@ public class ConsumerAddressServiceImpl implements ConsumerAddressService {
         return addressResponseDTO;
     }
 
+
     public AddressResponseDTO getAddressById(String addressId) {
         LOG.info("Getting address by id");
 
@@ -73,6 +77,7 @@ public class ConsumerAddressServiceImpl implements ConsumerAddressService {
 
         return addressResponseDTO;
     }
+
 
     public ConsumerAddressResponseDTO getConsumerAddressById(String consumerId) {
         LOG.info("Getting consumer address by id");
@@ -87,6 +92,7 @@ public class ConsumerAddressServiceImpl implements ConsumerAddressService {
         return consumerAddressResponseDTO;
     }
 
+
     public List<AddressResponseDTO> getAllAddresses() {
         LOG.info("Getting all addresses");
 
@@ -96,6 +102,7 @@ public class ConsumerAddressServiceImpl implements ConsumerAddressService {
 
         return addressResponseDTOList;
     }
+
 
     public ConsumerResponseDTO getConsumerById(String consumerId) {
         LOG.info("Getting consumer by id");
@@ -107,6 +114,7 @@ public class ConsumerAddressServiceImpl implements ConsumerAddressService {
         return consumerResponseDTO;
     }
 
+
     public List<ConsumerResponseDTO> getAllConsumers() {
         LOG.info("Getting all consumers");
 
@@ -117,6 +125,7 @@ public class ConsumerAddressServiceImpl implements ConsumerAddressService {
         return consumerResponseDTOList;
     }
 
+
     public AddressResponseDTO updateAddressById(String addressId, AddressRegisterDTO addressRegisterDTO) {
         LOG.info("Updating address by id");
 
@@ -126,6 +135,7 @@ public class ConsumerAddressServiceImpl implements ConsumerAddressService {
 
         return addressResponseDTO;
     }
+
 
     public ConsumerResponseDTO updateConsumer(String consumerId, ConsumerRegisterDTO consumerRegisterDTO) {
 
@@ -138,6 +148,7 @@ public class ConsumerAddressServiceImpl implements ConsumerAddressService {
         return consumerResponseDTO;
     }
 
+
     public void deleteAddressById(String addressId) {
         LOG.info("Deleting address by id");
 
@@ -145,6 +156,7 @@ public class ConsumerAddressServiceImpl implements ConsumerAddressService {
 
         LOG.info("Finished deleting address by id");
     }
+
 
     public void deleteConsumerById(String consumerId) {
         LOG.info("Deleting consumer by id");
